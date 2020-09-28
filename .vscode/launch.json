@@ -6,6 +6,7 @@
       "name": "Debug (Launch) - Current File",
       "request": "launch",
       "mainClass": "${file}",
+      "projectName": "STUDY",
       "console": "externalTerminal"
     }
   ]
