@@ -23,12 +23,11 @@ public class StandardDeviation {
         for(int i = 0; i < values.length; i++)
              standardDeviation += Math.pow(values[i] - avg, 2);
 
-        //System.out.println("Standardabweichung: " + Math.sqrt((1. / (values.length-1)) * standardDeviation));
         System.out.println("Standardabweichung: " + Math.sqrt(standardDeviation / (values.length-1)));
 
         System.out.println();
         System.out.println("Erneut ausf\u00fchren? (y)");
-        if(System.console().readLine().toLowerCase().equals("y"))
+        if(System.console().readLine().equalsIgnoreCase("y"))
             main(null);
     }
 }
