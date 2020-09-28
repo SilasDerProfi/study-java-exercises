@@ -1,0 +1,8 @@
+Michael van Gerwen won with 9 darts
+Michael van Gerwen won with 9 darts
+Michael van Gerwen won with 9 darts
+Michael van Gerwen won with 9 darts
+frame0won in 1 rounds
+de.dhbwka.java.exam.quartets.PlayerTerm[frame0,0,0,400x300,layout=java.awt.BorderLayout,title=Alex 3,resizable,normal,defaultCloseOperation=EXIT_ON_CLOSE,rootPane=javax.swing.JRootPane[,8,31,384x261,layout=javax.swing.JRootPane$RootLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=16777673,maximumSize=,minimumSize=,preferredSize=],rootPaneCheckingEnabled=true]won in 1 rounds
+Andywon in 1 rounds
+Alex won in 1 rounds

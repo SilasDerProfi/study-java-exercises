@@ -1,0 +1,6 @@
+Die Quersumme von 55 ist 10
+Die Quersumme von 88 ist 16
+Quersumme von 9990 ist 27
+Quersumme von 7474747 ist 40
+Quersumme von 1584 ist 18
+Quersumme von 90 ist 9

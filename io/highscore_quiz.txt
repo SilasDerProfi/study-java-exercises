@@ -1,0 +1,5 @@
+Game finished after 4 seconds, score: Mia (0), Ben (0)
+Game finished after 26 seconds, score: Mia (2), Ben (0)
+Game finished after 14 seconds, score: Mia (0), Ben (0)
+Game finished after 65 seconds, score: Mia (0), Ben (0)
+Game finished after 32 seconds, score: Mia (0), Ben (8)
