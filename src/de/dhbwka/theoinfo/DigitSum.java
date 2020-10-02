@@ -1,4 +1,4 @@
-package de.dhbwka.java.exercise.theoinfo;
+package de.dhbwka.theoinfo;
 
 /**
  * DigitSum
