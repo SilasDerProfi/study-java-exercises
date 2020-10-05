@@ -9,7 +9,7 @@ public class UniSample {
         // Open a database connection
         // (create a new database if it doesn't exist yet):
         EntityManagerFactory emf =
-            Persistence.createEntityManagerFactory("unibeispiel.odb");
+            Persistence.createEntityManagerFactory("io/odb/unibeispiel.odb");
         EntityManager em = emf.createEntityManager();
 
         if (true) {  // set to false, once the DB exists
