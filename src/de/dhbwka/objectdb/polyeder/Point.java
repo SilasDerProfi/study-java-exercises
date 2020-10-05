@@ -16,7 +16,7 @@ public class Point implements Serializable
     public Point() {
     }
  
-    Point(int x, int y, int z) {
+    Point(double x, double y, double z) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -25,9 +25,11 @@ public class Point implements Serializable
     public double getX() {
     	return x;
     }
+
     public double getY() {
     	return y;
     }
+
     public double getZ() {
     	return z;
     }

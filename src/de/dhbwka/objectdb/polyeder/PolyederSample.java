@@ -11,14 +11,18 @@ public class PolyederSample
         // Open a database connection
         // (create a new database if it doesn't exist yet):
         EntityManagerFactory emf =
-            Persistence.createEntityManagerFactory("polyeder.odb");
+            Persistence.createEntityManagerFactory("io/odb/polyeder.odb");
         EntityManager em = emf.createEntityManager();
  
         // Store 1000 Point objects in the database:
         em.getTransaction().begin();
         for (int i = 0; i < 1000; i++) {
-            Point p = new Point(i, i, i);
-            em.persist(p);
+            Point p0 = new Point(i, i, i);
+            em.persist(p0);
+            Point p1 = new Point(i + 10, i + 20, i + 30);
+            em.persist(p1);
+            Edge e = new Edge(p0, p1);
+            em.persist(e);
         }
         em.getTransaction().commit();
  

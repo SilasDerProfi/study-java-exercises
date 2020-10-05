@@ -12,14 +12,30 @@ public class KnapsackTest {
             new Item(50,200),
             new Item(50,150),
             new Item(15,30),
+            new Item(60,60),
+            new Item(35,175),
+            new Item(50,200),
+            new Item(50,150),
+            new Item(15,30),
+            new Item(60,60),
+            new Item(35,175),
+            new Item(50,200),
+            new Item(50,150),
+            new Item(15,30),
             new Item(60,60)
         );
 
-        Knapsack myBackpack = new Knapsack(100, items.toArray(new Item[0]));
+        Knapsack myBackpack = new Knapsack(200, items.toArray(new Item[0]));
         myBackpack.solveHillClimbing(10000);
         
+        int weight = 0;
+        int value = 0;
         for(Item item : myBackpack.getCurrentResult()){
             System.out.println(item);
+            weight += item.getWeight();
+            value += item.getValue();
         }
+        System.out.println("-----------------");
+        System.out.println(weight + " kg, " + value + " €");
     }
 }
