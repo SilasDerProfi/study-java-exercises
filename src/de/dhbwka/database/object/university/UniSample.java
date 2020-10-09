@@ -1,4 +1,4 @@
-package de.dhbwka.objectdb.university;
+package de.dhbwka.database.object.university;
 
 import javax.persistence.*;
 import java.util.*;

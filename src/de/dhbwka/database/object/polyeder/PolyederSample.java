@@ -1,4 +1,4 @@
-package de.dhbwka.objectdb.polyeder;
+package de.dhbwka.database.object.polyeder;
 
 import javax.persistence.*;
 import java.util.*;
