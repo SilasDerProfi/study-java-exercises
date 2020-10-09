@@ -1,4 +1,4 @@
-package de.dhbwka.database.objectrelation;
+package de.dhbwka.database.objectrelational;
 
 import java.util.List;
 
