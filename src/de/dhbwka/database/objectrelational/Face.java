@@ -8,11 +8,15 @@ import javax.persistence.*;
 public class Face {
     @Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	public long id;
+	private long id;
 
     public Face(){
 		// default constructor for Mapping
     }
+
+    @ManyToOne
+    @JoinColumn(name="poly")
+    public Polyeder polyeder;
 
     @Override
     public String toString() {

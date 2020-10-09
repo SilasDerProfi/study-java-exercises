@@ -1,5 +1,8 @@
 package de.dhbwka.database.objectrelational;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -9,16 +12,21 @@ public class Polyeder
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	public long id;
+	private long id;
 
-	public String name;
+	private String name;
  
 	public Polyeder() {
 		// default constructor for Mapping
 	}
-    
+ 
+	@OneToMany(mappedBy = "polyeder")
+	public List<Face> faces = new ArrayList<>();
+   
 	public double getPerimeter() {
-		return 0.0;
+		for(Face f : faces)
+			System.out.println(f);
+		return -0.0;
 	}
       
 	@Override
