@@ -5,6 +5,7 @@
     <class>de.dhbwka.database.objectrelational.Polyeder</class>
     <class>de.dhbwka.database.objectrelational.Face</class>
     <class>de.dhbwka.database.objectrelational.Edge</class>
+    <class>de.dhbwka.database.objectrelational.Point</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://db2.frank-may.de/Silas?useSSL=true" />
       <property name="javax.persistence.jdbc.user" value="Silas" />
