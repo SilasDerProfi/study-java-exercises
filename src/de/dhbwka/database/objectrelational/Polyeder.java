@@ -46,12 +46,11 @@ public class Polyeder
 	}
 
 	public double getPerimeter() {
-		for(Face f : faces){
-			System.out.println(f);
-			for(Edge e : f.getEdges())
-				System.out.println("  " + e);
-		}
-		return -0.0;
+		return faces.stream()
+			.flatMap(f -> f.getEdges().stream())
+			.distinct()
+			.mapToDouble(Edge::getLength)
+			.sum();
 	}   
       
 	@Override

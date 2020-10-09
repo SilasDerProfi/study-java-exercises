@@ -49,7 +49,6 @@ public class Point {
 		this.z = z;
 	}
 
-
     @Override
     public String toString() {
         return String.format("P(%d, %d, %d)", getX(), getY(), getZ());
