@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.*;
 
 
-public class PolyederSample
+public class Sample
 {
 	private static EntityManager entityManager;
 
