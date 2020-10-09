@@ -49,8 +49,20 @@ public class Point {
 		this.z = z;
 	}
 
+	/**
+	 * Moves the Point in the 3-dimensional space
+	 * @param dx delta x
+	 * @param dy delta y
+	 * @param dz delta z
+	 */
+	public void move(double dx, double dy, double dz){
+		setX(getX() + dx);
+		setY(getY() + dy);
+		setZ(getZ() + dz);
+	}
+
     @Override
     public String toString() {
-        return String.format("P(%d, %d, %d)", getX(), getY(), getZ());
+        return String.format("P(%f, %f, %f)", getX(), getY(), getZ());
     }
 }

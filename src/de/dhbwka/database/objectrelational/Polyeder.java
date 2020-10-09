@@ -1,6 +1,7 @@
 package de.dhbwka.database.objectrelational;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.*;
@@ -51,8 +52,22 @@ public class Polyeder
 			.distinct()
 			.mapToDouble(Edge::getLength)
 			.sum();
-	}   
-      
+	}
+
+	/**
+	 * Moves the Polyeder in the 3-dimensional space
+	 * @param dx delta x
+	 * @param dy delta y
+	 * @param dz delta z
+	 */
+	public void move(double dx, double dy, double dz){
+		faces.stream()
+			.flatMap(f -> f.getEdges().stream()
+				.flatMap(e -> Arrays.asList(e.getP1(), e.getP2()).stream()))
+			.distinct()
+			.forEach(p -> p.move(dx,dy,dz));
+	}
+	
 	@Override
 	public String toString() {
 		return String.format("POL(%d,%s)", getId(), getName());
