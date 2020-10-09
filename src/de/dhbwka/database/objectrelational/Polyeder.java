@@ -14,6 +14,8 @@ public class Polyeder
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String name;
+	@OneToMany(mappedBy = "polyeder")
+	private List<Face> faces = new ArrayList<>();
  
 	public Polyeder() {
         // default constructor for Mapping
@@ -35,18 +37,25 @@ public class Polyeder
 		this.name = name;
 	}
 
-	public double getPerimeter() {
-		for(Face f : faces)
-			System.out.println(f);
-		return -0.0;
+	public List<Face> getFaces() {
+		return this.faces;
 	}
-	 
-	@OneToMany(mappedBy = "polyeder")
-	public List<Face> faces = new ArrayList<>();
-   
+
+	public void setFaces(List<Face> faces) {
+		this.faces = faces;
+	}
+
+	public double getPerimeter() {
+		for(Face f : faces){
+			System.out.println(f);
+			for(Edge e : f.getEdges())
+				System.out.println("  " + e);
+		}
+		return -0.0;
+	}   
       
 	@Override
 	public String toString() {
-		return String.format("POL(%d,%s)", id, name);
+		return String.format("POL(%d,%s)", getId(), getName());
 	}
 }
