@@ -1,11 +1,9 @@
 
 package de.dhbwka.database.objectrelational.publication;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity(name="BlogPost")
-@DiscriminatorValue("BlogPost")
 public class BlogPost extends Publication
 {
 	private String url;

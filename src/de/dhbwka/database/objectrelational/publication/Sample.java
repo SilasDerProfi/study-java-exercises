@@ -31,7 +31,7 @@ public class Sample
 			entityManager.getTransaction().begin();
 			entityManager.createQuery("DELETE FROM Book b").executeUpdate();
 			entityManager.createQuery("DELETE FROM BlogPost b").executeUpdate();
-			//entityManager.createQuery("DELETE FROM Publication p").executeUpdate();
+			entityManager.createQuery("DELETE FROM Publication p").executeUpdate();
 			entityManager.createQuery("DELETE FROM Author a").executeUpdate();
 			entityManager.getTransaction().commit();
 		} catch (Exception e) {
