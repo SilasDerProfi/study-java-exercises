@@ -8,7 +8,6 @@ public class BlogPost extends Publication
 {
 	private String url;
 
-
 	public BlogPost() {
 		// default constructor for Mapping
 	}

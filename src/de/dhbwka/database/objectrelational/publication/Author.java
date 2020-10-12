@@ -15,9 +15,8 @@ public class Author
 	
 	private String name;
 
-	// mappedSuperclass don't support polymorphy
-	//@OneToMany(mappedBy="author")
-	//private List<Publication> publications = new ArrayList<>(); 
+	@OneToMany(mappedBy="author")
+	private List<Publication> publications = new ArrayList<>(); 
 
 	public Author() {
 		// default constructor for Mapping
@@ -40,12 +39,11 @@ public class Author
 	}
 
 	public List<Publication> getPublications() {
-		//return this.publications;
-		return new ArrayList<Publication>();
+		return this.publications;
 	}
 
 	public void setPublications(List<Publication> publications) {
-		//this.publications = publications;
+		this.publications = publications;
 	}
 
 	@Override

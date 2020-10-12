@@ -4,7 +4,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Publication
 {
 	@Id
