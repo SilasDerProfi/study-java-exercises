@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 
-public class Main
+public class Sample
 {
 	private static EntityManager entityManager;
 	
