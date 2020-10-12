@@ -1,4 +1,4 @@
-package de.dhbwka.database.objectrelational;
+package de.dhbwka.database.objectrelational.polyeder;
 
 import java.util.ArrayList;
 import java.util.List;
