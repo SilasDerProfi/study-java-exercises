@@ -1,9 +1,10 @@
 
 package de.dhbwka.database.objectrelational.publication;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity(name="Book")
+@DiscriminatorValue("Book")
 public class Book extends Publication
 {
 	private boolean isHardcover;
