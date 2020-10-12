@@ -14,4 +14,17 @@
       <property name="eclipselink.ddl-generation.output-mode" value="database" />
     </properties>
   </persistence-unit>
+  <persistence-unit name="publication" transaction-type="RESOURCE_LOCAL">
+    <class>de.dhbwka.database.objectrelational.publication.Author</class>
+    <class>de.dhbwka.database.objectrelational.publication.Book</class>
+    <class>de.dhbwka.database.objectrelational.publication.BlogPost</class>
+    <class>de.dhbwka.database.objectrelational.publication.Publication</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://db2.frank-may.de/Silas?useSSL=true" />
+      <property name="javax.persistence.jdbc.user" value="Silas" />
+      <property name="javax.persistence.jdbc.password" value="Klartext" />
+      <property name="eclipselink.ddl-generation" value="create-tables" />
+      <property name="eclipselink.ddl-generation.output-mode" value="database" />
+    </properties>
+  </persistence-unit>
 </persistence>
