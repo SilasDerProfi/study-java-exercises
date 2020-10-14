@@ -5,7 +5,6 @@ import java.util.BitSet;
 import java.util.List;
 import java.util.Random;
 
-
 /**
  * knapsack
  */
@@ -103,6 +102,8 @@ public class Knapsack {
 
             currentResult = newResult;
         }
+
+        executionMode = ExecutionMode.NONE;
     }
     
     public void solveGradientDescent(){

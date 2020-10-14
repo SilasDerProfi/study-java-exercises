@@ -30,7 +30,7 @@ public class KnapsackTest {
             distributionTable.compute(currentTotalValue, (k, v) -> v == null ? 1 : ++v);
         }
 
-        System.out.println(String.format("Average Value for %d executions is %d", EXECUTION_TIMES,  totalValue / EXECUTION_TIMES));
-        System.out.println(String.format("Distribution of the results: %s", distributionTable.toString()));
+        System.out.println(String.format("Distribution of all results: %s", distributionTable.toString()));
+        System.out.println(String.format("Average: %d", totalValue / EXECUTION_TIMES));
     }
 }
