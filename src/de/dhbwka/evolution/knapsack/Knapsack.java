@@ -14,6 +14,7 @@ public class Knapsack {
     private final Item[] items;
     private final int maximumWeight;
     private BitSet currentResult;
+    private int currentGeneration;
     private ExecutionMode executionMode;
     private Random randomNumber;
 
@@ -59,23 +60,48 @@ public class Knapsack {
      * @return the mutated Child
      */
     private BitSet mutate(BitSet parent){
-        // TODO: Implement Recombination / Crossover
+        // inverse
         int flipIndex = randomNumber.nextInt(items.length);
         BitSet child = (BitSet)parent.clone();
         child.flip(flipIndex);
+
+        // swap
+        int swapIndex1 = randomNumber.nextInt(items.length);
+        int swapIndex2 = randomNumber.nextInt(items.length);
+
+        if(child.get(swapIndex1) != child.get(swapIndex2))
+        {
+            child.flip(swapIndex1);
+            child.flip(swapIndex2);
+        }
+
         return child;
     }
 
     /**
      * Solves the Knapsack problem with Hill climbing 
+     * @param maxGenerations Maximum number of generations
+     * @param maxNoChangeGenerations Maximum number of generations without improvement
      */
-    public void solveHillClimbing(int maxGenerations){
+    public void solveHillClimbing(int maxGenerations, int maxNoChangeGenerations){
         currentResult = new BitSet(items.length);
+
         executionMode = ExecutionMode.HILL_CLIMBING;
-        
-        for(int generation = 0; executionMode == ExecutionMode.HILL_CLIMBING && generation != maxGenerations; generation++){
+        int noChangeCounter = 0;
+
+        for(currentGeneration = 0;
+            executionMode == ExecutionMode.HILL_CLIMBING &&
+            currentGeneration != maxGenerations &&
+            noChangeCounter < maxNoChangeGenerations; currentGeneration++)
+        {
             BitSet child = mutate(currentResult);
-            currentResult = getBetter(currentResult, child);
+            BitSet newResult = getBetter(currentResult, child);
+            if(currentResult == newResult)
+                noChangeCounter++;
+            else
+                noChangeCounter = 0;
+
+            currentResult = newResult;
         }
     }
     
@@ -98,4 +124,23 @@ public class Knapsack {
     public List<Item> getCurrentResult(){
         return getAffectedItems(currentResult);
     }
+
+    public int getCurrentTotalValue(){
+        return getAffectedItems(currentResult).stream().mapToInt(Item::getValue).sum();
+    }
+
+	public void printCurrentResult() {
+        System.out.println("-----Knapsack-----");
+        System.out.println(String.format("Generation:%7d", currentGeneration));
+        int totalWeight = 0;
+        int totalValue = 0;
+        for(Item item : getCurrentResult()){
+            System.out.println(item);
+            totalWeight += item.getWeight();
+            totalValue += item.getValue();
+        }
+        System.out.println("------Total-------");
+        System.out.println(totalWeight + " kg, " + totalValue + " €");
+        System.out.println("------------------");
+	}
 }

@@ -1,41 +1,36 @@
 package de.dhbwka.evolution.knapsack;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class KnapsackTest {
     
+    static final int EXECUTION_TIMES = 10;
+    static final int MAX_GENERATIONS = 1000;
+    static final int MAX_NO_CHANGE_GENERATIONS = 100;
+    
     public static void main(String[] args) {
-        List<Item> items = Arrays.asList(
-            new Item(20,120),
-            new Item(35,175),
-            new Item(50,200),
-            new Item(50,150),
-            new Item(15,30),
-            new Item(60,60),
-            new Item(35,175),
-            new Item(50,200),
-            new Item(50,150),
-            new Item(15,30),
-            new Item(60,60),
-            new Item(35,175),
-            new Item(50,200),
-            new Item(50,150),
-            new Item(15,30),
-            new Item(60,60)
-        );
+        Item[] items = {
+            new Item(20,120), new Item(35,175), new Item(50,200),
+            new Item(50,150), new Item(15,30), new Item(60,60)
+        };
 
-        Knapsack myBackpack = new Knapsack(200, items.toArray(new Item[0]));
-        myBackpack.solveHillClimbing(10000);
-        
-        int weight = 0;
-        int value = 0;
-        for(Item item : myBackpack.getCurrentResult()){
-            System.out.println(item);
-            weight += item.getWeight();
-            value += item.getValue();
+        Knapsack myBackpack = new Knapsack(100, items);
+
+        int totalValue = 0;
+        var distributionTable = new HashMap<Integer, Integer>();
+
+        // execute the algorithm multiple times, to compare the results
+        for(int i = 0; i < EXECUTION_TIMES; i++) {
+            myBackpack.solveHillClimbing(MAX_GENERATIONS, MAX_NO_CHANGE_GENERATIONS);
+            int currentTotalValue = myBackpack.getCurrentTotalValue();
+            totalValue += currentTotalValue;
+            
+            distributionTable.compute(currentTotalValue, (k, v) -> v == null ? 1 : ++v);
         }
-        System.out.println("-----------------");
-        System.out.println(weight + " kg, " + value + " €");
+
+        System.out.println(String.format("Average Value for %d executions is %d", EXECUTION_TIMES,  totalValue / EXECUTION_TIMES));
+        System.out.println(String.format("Distribution of the results: %s", distributionTable.toString()));
     }
 }
