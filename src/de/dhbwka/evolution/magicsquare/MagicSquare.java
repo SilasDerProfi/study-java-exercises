@@ -1,5 +1,6 @@
 package de.dhbwka.evolution.magicsquare;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,6 +9,9 @@ import java.util.stream.IntStream;
 public class MagicSquare {
 
     private int[][] square;
+    private MagicSquareResult[] rowResults;
+    private MagicSquareResult[] colResults;
+    private int totalFitness;
     private int n;
     /**
      * Initilizes a new MagicSquare. The initial values are sorted ascending
@@ -19,6 +23,19 @@ public class MagicSquare {
         this.n = n;
         // set the values in ascending order
         for(int i = 0; i < n * n; square[i / n][i % n] = ++i);
+        recalculateFitness();
+    }
+    
+    public int getTotalFitness(){
+        return totalFitness;
+    }
+
+    public int getRowFitness(int rowIndex){
+        return rowResults[rowIndex].getFitness();
+    }
+    
+    public int getColFitness(int colIndex){
+        return colResults[colIndex].getFitness();
     }
 
     /**
@@ -26,20 +43,81 @@ public class MagicSquare {
      */
     public void Shuffle(){
         // get possible values and shuffle them
-        List<Integer> values = IntStream.rangeClosed(1, n).boxed().collect(Collectors.toList());
+        List<Integer> values = IntStream.rangeClosed(1, n * n).boxed().collect(Collectors.toList());
         Collections.shuffle(values);
 
         // set shuffled values
         for(int i = 0; values.size() > 0; i++)
             square[i / n][i % n] = values.remove(0);
+        recalculateFitness();
+    }
+    
+    private void recalculateFitness(){
+        // init
+        int desired_line_sum = IntStream.rangeClosed(1, n * n).sum();
+        this.rowResults = new MagicSquareResult[n];
+        this.colResults = new MagicSquareResult[n];
+        this.totalFitness = 0;
+       
+        // Calculate sum and fitness for the rows and cols
+        for(int i = 0; i < n; i++){
+            // calculate row results
+            final int row_index = i;
+            rowResults[row_index] = new MagicSquareResult(desired_line_sum, Arrays.stream(this.square[row_index]).sum());
+        
+            // calculate col results
+            final int col_index = i;
+            colResults[col_index] = new MagicSquareResult(desired_line_sum, Arrays.stream(this.square).mapToInt(row -> row[col_index]).sum());
+        }
+
+        // calculate total Fitness
+        Arrays.stream(rowResults).forEach(row -> this.totalFitness += row.getFitness());
+        Arrays.stream(colResults).forEach(col -> this.totalFitness += col.getFitness());
     }
 
+    /**
+     * Swaps the two Cells and forces a fitness recalculation
+     */
+    public void Swap(int row1, int col1, int row2, int col2){
+        // Swap
+        int value1 = this.square[row1][col1];
+        int value2 = this.square[row2][col2];
+        this.square[row1][col1] = value2;
+        this.square[row2][col2] = value1;
 
-    public void SolveStupidSwap(){
-        // TODO: implement
+        // Update Row and Column Results
+        int swapDifference = value1 - value2;
+
+        int row1fitness = this.rowResults[row1].getFitness();
+        this.rowResults[row1].increaseSum(swapDifference);
+
+        int col1fitness = this.rowResults[col1].getFitness();
+        this.colResults[col1].increaseSum(swapDifference);
+
+        int row2fitness = this.rowResults[row2].getFitness();
+        this.rowResults[row2].increaseSum(-swapDifference);
+
+        int col2fitness = this.rowResults[col2].getFitness();
+        this.colResults[col2].increaseSum(-swapDifference);
+
+        // Update total fitness
+        this.totalFitness -= row1fitness - this.rowResults[row1].getFitness();
+        this.totalFitness -= col1fitness - this.rowResults[col1].getFitness();
+        this.totalFitness -= row2fitness - this.rowResults[row2].getFitness();
+        this.totalFitness -= col2fitness - this.rowResults[col2].getFitness();
     }
 
-    public void SolveIntelligentSwap(){
-        // TODO: implement
+    /**
+     * Returns a clone of the current MagicSquare instance
+     */
+    public MagicSquare clone(){
+        var clone = new MagicSquare(n);
+
+        clone.square = Arrays.stream(this.square).map(int[]::clone).toArray(int[][]::new);
+        clone.rowResults = this.rowResults.clone();
+        clone.colResults = this.colResults.clone();
+        clone.totalFitness = this.totalFitness;
+
+        return clone;
     }
 }
