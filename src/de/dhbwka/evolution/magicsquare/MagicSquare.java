@@ -54,7 +54,7 @@ public class MagicSquare {
     
     private void recalculateFitness(){
         // init
-        int desired_line_sum = IntStream.rangeClosed(1, n * n).sum();
+        int desired_line_sum = IntStream.rangeClosed(1, n * n).sum() / n;
         this.rowResults = new MagicSquareResult[n];
         this.colResults = new MagicSquareResult[n];
         this.totalFitness = 0;
@@ -119,5 +119,38 @@ public class MagicSquare {
         clone.totalFitness = this.totalFitness;
 
         return clone;
+    }
+
+    @Override
+    public String toString() {
+        String stringRepresentation = "";
+        String colSumRepresentation = "";
+        String colFitnessRepresentation = "";
+
+        int colWidth = String.valueOf(n * n).length() + 1;
+        String colPattern = "%" + colWidth * 2 + "d";
+
+        for(int i = 0; i < n; i++){
+            int rowIndex = i;
+            for (int colIndex = 0; colIndex < n; colIndex++)
+                stringRepresentation += String.format(colPattern, square[rowIndex][colIndex]);
+
+            var rowResult = rowResults[rowIndex];
+            stringRepresentation += "  ";
+            stringRepresentation += String.format(colPattern, rowResult.getSum());
+            stringRepresentation += String.format(colPattern, rowResult.getFitness());
+            stringRepresentation += "\r\n";
+
+            var colIndex = i;
+            var colResult = colResults[colIndex];
+            colSumRepresentation += String.format(colPattern, colResult.getSum());
+            colFitnessRepresentation += String.format(colPattern, colResult.getFitness());
+        }
+        
+        stringRepresentation += "\r\n" + colSumRepresentation + "\r\n";
+        stringRepresentation += colFitnessRepresentation;
+        stringRepresentation += String.format("  %" + colWidth * 4 + "d", this.totalFitness);
+
+        return stringRepresentation;
     }
 }
