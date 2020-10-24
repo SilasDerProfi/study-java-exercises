@@ -89,7 +89,7 @@ public class Station
 		// first step: add all tuples from iterator1 to a map
 		iterator1.forEachRemaining(d -> map.computeIfAbsent(d.c, key -> new ArrayList<>()).add(d));
 
-		//second step: combine all values from iterator2 with the values from the map
+		// second step: combine all values from iterator2 with the values from the map
 		iterator2.forEachRemaining(d1 -> map.getOrDefault(d1.c, new ArrayList<>()).forEach(d2 -> result.addData(new DataResult(d1, d2))));
 	}
 }

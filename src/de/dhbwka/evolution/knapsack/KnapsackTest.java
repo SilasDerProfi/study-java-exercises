@@ -1,12 +1,13 @@
 package de.dhbwka.evolution.knapsack;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 public class KnapsackTest {
     
-    static final int EXECUTION_TIMES = 10;
-    static final int MAX_GENERATIONS = 1000;
-    static final int MAX_NO_CHANGE_GENERATIONS = 100;
+    static final int EXECUTION_TIMES = 100;
+    static final int MAX_GENERATIONS = 10;
+    static final int NUMBER_OF_CHILDREN = 5;
+    static final int MAX_NO_CHANGE_GENERATIONS = 10;
     
     public static void main(String[] args) {
         Item[] items = {
@@ -17,12 +18,14 @@ public class KnapsackTest {
         Knapsack myBackpack = new Knapsack(100, items);
 
         int totalValue = 0;
-        var distributionTable = new HashMap<Integer, Integer>();
+        var distributionTable = new TreeMap<Integer, Integer>();
 
         // execute the algorithm multiple times, to compare the results
         for(int i = 0; i < EXECUTION_TIMES; i++) {
-            myBackpack.solveHillClimbing(MAX_GENERATIONS, MAX_NO_CHANGE_GENERATIONS);
+            int time = myBackpack.solveHillClimbing(NUMBER_OF_CHILDREN, MAX_GENERATIONS, MAX_NO_CHANGE_GENERATIONS);
             int currentTotalValue = myBackpack.getCurrentTotalValue();
+            // use this line for logging:
+            // System.out.printf("%3d miliseconds for the result %d\r\n", time, currentTotalValue);
             totalValue += currentTotalValue;
             
             distributionTable.compute(currentTotalValue, (k, v) -> v == null ? 1 : ++v);

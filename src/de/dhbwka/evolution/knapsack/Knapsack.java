@@ -1,6 +1,7 @@
 package de.dhbwka.evolution.knapsack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
 import java.util.Random;
@@ -44,6 +45,17 @@ public class Knapsack {
         return b;
     }
 
+    private BitSet getBetter(List<BitSet> sets){
+        if(sets == null || sets.isEmpty())
+            return null;
+
+        var best = sets.get(0);
+        for(int setIndex = 1; setIndex < sets.size(); setIndex++)
+            best = getBetter(best, sets.get(setIndex));
+
+        return best;
+    }
+
     private List<Item> getAffectedItems(BitSet selection){
         List<Item> affectedItems = new ArrayList<>();
         
@@ -59,15 +71,17 @@ public class Knapsack {
      * @return the mutated Child
      */
     private BitSet mutate(BitSet parent){
+        if(parent == null)
+            return parent;
+
         // inverse
-        int flipIndex = randomNumber.nextInt(items.length);
         BitSet child = (BitSet)parent.clone();
+        int flipIndex = randomNumber.nextInt(items.length);
         child.flip(flipIndex);
 
         // swap
         int swapIndex1 = randomNumber.nextInt(items.length);
         int swapIndex2 = randomNumber.nextInt(items.length);
-
         if(child.get(swapIndex1) != child.get(swapIndex2))
         {
             child.flip(swapIndex1);
@@ -79,22 +93,33 @@ public class Knapsack {
 
     /**
      * Solves the Knapsack problem with Hill climbing 
+     * @param numberOfChildren The generated number of Children for each generation
      * @param maxGenerations Maximum number of generations
      * @param maxNoChangeGenerations Maximum number of generations without improvement
+     * @return total execution time in miliseconds
      */
-    public void solveHillClimbing(int maxGenerations, int maxNoChangeGenerations){
+    public int solveHillClimbing(int numberOfChildren, int maxGenerations, int maxNoChangeGenerations){
         currentResult = new BitSet(items.length);
 
         executionMode = ExecutionMode.HILL_CLIMBING;
+        var startTime = System.currentTimeMillis();
         int noChangeCounter = 0;
+
+        // TODO: Consider using a destruction algorithm (e.g. bomb algorithm) to escape local maxima
 
         for(currentGeneration = 0;
             executionMode == ExecutionMode.HILL_CLIMBING &&
             currentGeneration != maxGenerations &&
             noChangeCounter < maxNoChangeGenerations; currentGeneration++)
         {
-            BitSet child = mutate(currentResult);
-            BitSet newResult = getBetter(currentResult, child);
+            var allExponats = new ArrayList<BitSet>();
+            allExponats.add(currentResult);
+
+            // TODO: Consider avoiding twins
+            for(int childIndex = 0; childIndex < numberOfChildren; childIndex++)
+                allExponats.add(mutate(currentResult));
+        
+            BitSet newResult = getBetter(allExponats); 
             if(currentResult == newResult)
                 noChangeCounter++;
             else
@@ -104,18 +129,7 @@ public class Knapsack {
         }
 
         executionMode = ExecutionMode.NONE;
-    }
-    
-    public void solveGradientDescent(){
-        currentResult = new BitSet(items.length);
-        executionMode = ExecutionMode.GRADIENT_DESCENT;
-
-        new Thread(() -> {
-            while(executionMode == ExecutionMode.GRADIENT_DESCENT){
-                // TODO: Implement
-                executionMode = ExecutionMode.NONE;
-            }
-        }).start();
+        return (int)(System.currentTimeMillis() - startTime);
     }
 
     public void stopSolving(){
