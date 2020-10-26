@@ -34,8 +34,11 @@ public class Station
 		stationR.mData.getIterator().forEachRemaining(r -> {
 			// Transfer r (3) and key (1)
 			mValuesTransferred += 4;
+			
 			// get matching rows from S
-			stationS.getByKey(r.c).forEachRemaining(s -> mData.addData(new DataResult(r, s)));
+			var join = stationS.mData.data().stream().filter(s -> s.c == r.c).collect(Collectors.toList());
+			mValuesTransferred += 3 * join.size();
+			join.iterator().forEachRemaining(s -> mData.addData(new DataResult(r, s)));
 		});
 	}
 
@@ -101,12 +104,6 @@ public class Station
         hashJoin(mData, semiJoin.iterator(), stR.mData.getIterator());
         mValuesTransferred += 5 * mData.size();
     }
-
-	private Iterator<Data> getByKey(int key) {
-		var result = mData.data().stream().filter(s -> s.c == key).collect(Collectors.toList());
-		mValuesTransferred += 3 * result.size();
-		return result.iterator();
-	}
 	
 	/**
 	 * Hash-Join
