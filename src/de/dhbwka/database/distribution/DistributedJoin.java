@@ -4,7 +4,8 @@ import java.util.Iterator;
 
 public class DistributedJoin
 {
-	public static final int NDATA = 100;
+	public static final int NDATA_R = 100;
+	public static final int NDATA_S = 4000;
 	public static final int MAXVALUE = 200;
 
 	private Station mStationR = new Station();
@@ -47,13 +48,13 @@ public class DistributedJoin
 
 	private void createDataR() {
 		DataTable d = mStationR.getMData();
-		for (int i=0; i<NDATA; i++)
+		for (int i = 0; i < NDATA_R; i++)
 			d.addData(new DataR());
 		d.sort();
 	}
 	private void createDataS() {
 		DataTable d = mStationS.getMData();
-		for (int i=0; i<NDATA; i++)
+		for (int i = 0; i < NDATA_S; i++)
 			d.addData(new DataS());
 		d.sort();
 	}
