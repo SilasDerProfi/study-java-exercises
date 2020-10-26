@@ -1,5 +1,6 @@
 package de.dhbwka.database.distribution;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -31,8 +32,8 @@ public class Station
 	 */
 	public void computeJoinNestedLoops(Station stationR, Station stationS) {
 		stationR.mData.getIterator().forEachRemaining(r -> {
-			mValuesTransferred += 3;
-			
+			// Transfer r (3) and key (1)
+			mValuesTransferred += 4;
 			// get matching rows from S
 			stationS.getByKey(r.c).forEachRemaining(s -> mData.addData(new DataResult(r, s)));
 		});
@@ -48,20 +49,36 @@ public class Station
 
 	/**
 	 * Join transferring one relation
-	 * @param stationR
-	 * @param stationS
 	 */
 	public void computeJoinTransferOne(Station stationR, Station stationS) {
-		// TODO: implement
+		var datas = Arrays.asList(stationR.mData, stationS.mData);
+		datas.sort((a, b) -> b.size() - a.size());
+
+		// transferred values from the smaller station to the larger station
+		mValuesTransferred += 3 * datas.get(1).size();
+		
+		// store the join result in local table
+		hashJoin(mData, datas.get(0).getIterator(), datas.get(1).getIterator());
+
+		// transfer the values to the target Station
+		mValuesTransferred += 5 * mData.size();
 	}
 
 	/**
 	 * Join filtering one relation
-	 * @param stationR
-	 * @param stationS
 	 */
 	public void computeJoinFilterOne(Station stationR, Station stationS) {
-		// TODO: implement
+		var datas = Arrays.asList(stationR.mData.data(), stationS.mData.data());
+		datas.sort((a, b) -> b.size() - a.size());
+
+        var keys = datas.get(0).stream().mapToInt(d -> d.c).boxed().collect(Collectors.toList());
+		mValuesTransferred += keys.size();
+		
+		var semiJoin = datas.get(1).stream().filter(data -> keys.contains(data.c)).collect(Collectors.toList());
+        mValuesTransferred += 3 * semiJoin.size();
+
+        hashJoin(mData, datas.get(0).iterator(), semiJoin.iterator());
+		mValuesTransferred += 5 * mData.size();
 	}
 
 	/**
@@ -69,11 +86,22 @@ public class Station
 	 * @param stationR
 	 * @param stationS
 	 */
-	public void computeJoinHash(Station stationR, Station stationS) {
-		// TODO: implement
-	}
+	public void computeJoinHash(Station stR, Station stS)
+	{
+		long hashMap = 0;
+        for (Data data : stR.mData.data())
+            hashMap |= 1 << (data.c & 63);
+		
+		mValuesTransferred += 2;
 
-	
+		final long finalHashMap = hashMap;
+		List<Data> semiJoin = stS.mData.data().stream().filter(data -> (finalHashMap & (1 << (data.c & 63))) != 0).collect(Collectors.toList());
+		mValuesTransferred += 3 * semiJoin.size();
+        
+        hashJoin(mData, semiJoin.iterator(), stR.mData.getIterator());
+        mValuesTransferred += 5 * mData.size();
+    }
+
 	private Iterator<Data> getByKey(int key) {
 		var result = mData.data().stream().filter(s -> s.c == key).collect(Collectors.toList());
 		mValuesTransferred += 3 * result.size();
