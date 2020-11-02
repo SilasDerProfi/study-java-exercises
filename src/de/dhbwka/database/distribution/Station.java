@@ -34,7 +34,7 @@ public class Station
 		stationR.mData.getIterator().forEachRemaining(r -> {
 			// Transfer r (3) and key (1)
 			mValuesTransferred += 4;
-			
+
 			// get matching rows from S
 			var join = stationS.mData.data().stream().filter(s -> s.c == r.c).collect(Collectors.toList());
 			mValuesTransferred += 3 * join.size();
@@ -86,8 +86,6 @@ public class Station
 
 	/**
 	 * Join using hash
-	 * @param stationR
-	 * @param stationS
 	 */
 	public void computeJoinHash(Station stR, Station stS)
 	{
@@ -118,4 +116,3 @@ public class Station
 		iterator2.forEachRemaining(d1 -> map.getOrDefault(d1.c, new ArrayList<>()).forEach(d2 -> result.addData(new DataResult(d1, d2))));
 	}
 }
-
