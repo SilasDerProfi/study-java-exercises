@@ -21,3 +21,9 @@ These packages include examples of database implementations
   - eclipselink/jlib/jpa/org.eclipse.persistence.jpars_VERSION.jar
 
   ## Package `distribution` database
+
+  This package illustrates the operations of distributed databases. It is not an implementation of a distributed database.
+
+  ## Package `inmemory` database
+
+  This package illustrates the operations of inmemory databases. It is not an implementation of a distributed database.
