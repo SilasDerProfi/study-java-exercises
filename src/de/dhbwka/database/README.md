@@ -27,3 +27,7 @@ These packages include examples of database implementations
   ## Package `inmemory` database
 
   This package illustrates the operations of inmemory databases. It is not an implementation of a distributed database.
+
+  ## Package `xml` database
+
+- Please add the [BaseXVER.jar from basex.org](https://basex.org/download/) to the project-references (`lib/` directory)

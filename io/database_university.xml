@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding='utf-8'?>
+
+<Universität UnivName="Virtuelle Universität der Großen Denker">
+<UniLeitung>
+   <Rektor>Prof. Sokrates</Rektor>
+   <Kanzler>Dr. Erhard</Kanzler>
+</UniLeitung>
+<Fakultäten>
+   <Fakultät>
+      <FakName>Theologie</FakName>
+      <ProfessorIn PersNr="P2134">
+         <Name>Augustinus</Name>
+         <Rang>C3</Rang>
+         <Raum>309</Raum>
+         <Vorlesungen>
+            <Vorlesung VorlNr="V5022">
+            <Titel>Glaube und Wissen</Titel>
+            <SWS>2</SWS>
+            </Vorlesung>
+         </Vorlesungen>
+      </ProfessorIn>
+   </Fakultät>
+
+   <Fakultät>
+      <FakName>Physik</FakName>
+      <ProfessorIn PersNr="P2136">
+         <Name>Curie</Name>
+         <Rang>C4</Rang>
+         <Raum>36</Raum>
+      </ProfessorIn>
+      <ProfessorIn PersNr="P2127">
+         <Name>Kopernikus</Name>
+         <Rang>C3</Rang>
+         <Raum>310</Raum>
+      </ProfessorIn>
+   </Fakultät>
+
+   <Fakultät>
+      <FakName>Philosophie</FakName>
+      <ProfessorIn PersNr="P2125">
+         <Name>Sokrates</Name>
+         <Rang>C4</Rang>
+         <Raum>226</Raum>
+         <Vorlesungen>
+            <Vorlesung VorlNr="V5041" Voraussetzungen ="V5001">
+            <Titel>Ethik</Titel>
+            <SWS>4</SWS>
+            </Vorlesung>
+            <Vorlesung VorlNr="V5049" Voraussetzungen="V5001">
+               <Titel>Mäeutik</Titel>
+               <SWS>2</SWS>
+               </Vorlesung>
+            <Vorlesung VorlNr="V4052">
+               <Titel>Logik</Titel>
+               <SWS>4</SWS>
+            </Vorlesung>
+         </Vorlesungen>
+      </ProfessorIn>
+      <ProfessorIn PersNr="P2126">
+         <Name>Russel</Name>
+         <Rang>C4</Rang>
+         <Raum>232</Raum>
+         <Vorlesungen>
+            <Vorlesung VorlNr="V5043" Voraussetzungen="V5001">
+               <Titel>Erkenntnistheorie</Titel>
+               <SWS>3</SWS>
+            </Vorlesung>
+            <Vorlesung VorlNr="V5052" Voraussetzungen="V5043 V5041">
+               <Titel>Wissenschaftstheorie</Titel>
+               <SWS>3</SWS>
+            </Vorlesung>
+            <Vorlesung VorlNr="V5216" Voraussetzungen="V5041">
+               <Titel>Bioethik</Titel>
+               <SWS>2</SWS>
+            </Vorlesung>
+         </Vorlesungen>
+      </ProfessorIn>
+      <ProfessorIn PersNr="P2133">
+         <Name>Popper</Name>
+         <Rang>C3</Rang>
+         <Raum>52</Raum>
+         <Vorlesungen>
+            <Vorlesung VorlNr="V5259" Voraussetzungen="V5052">
+               <Titel>Der Wiener Kreis</Titel>
+               <SWS>2</SWS>
+            </Vorlesung>
+         </Vorlesungen>
+      </ProfessorIn>
+      <ProfessorIn PersNr="P2137">
+         <Name>Kant</Name>
+         <Rang>C4</Rang>
+         <Raum>7</Raum>
+         <Vorlesungen>
+            <Vorlesung VorlNr="V5001">
+            <Titel>Grundzüge</Titel>
+            <SWS>4</SWS>
+            </Vorlesung>
+            <Vorlesung VorlNr="V4630">
+            <Titel>Die 3 Kritiken</Titel>
+            <SWS>4</SWS>
+            </Vorlesung>
+         </Vorlesungen>
+      </ProfessorIn>
+   </Fakultät>
+</Fakultäten>
+</Universität>
