@@ -20,14 +20,14 @@ These packages include examples of database implementations
   - eclipselink/jlib/jpa/org.eclipse.persistence.jpa.modelgen_VERSION.jar
   - eclipselink/jlib/jpa/org.eclipse.persistence.jpars_VERSION.jar
 
-  ## Package `distribution` database
+## Package `distribution` database
 
-  This package illustrates the operations of distributed databases. It is not an implementation of a distributed database.
+This package illustrates the operations of distributed databases. It is not an implementation of a distributed database.
 
-  ## Package `inmemory` database
+## Package `inmemory` database
 
-  This package illustrates the operations of inmemory databases. It is not an implementation of a distributed database.
+This package illustrates the operations of inmemory databases. It is not an implementation of a distributed database.
 
-  ## Package `xml` database
+## Package `xml` database
 
-- Please add the [BaseXVER.jar from basex.org](https://basex.org/download/) to the project-references (`lib/` directory)
+- Please add the [BaseX[VERSION].jar from basex.org](https://basex.org/download/) to the project-references (`lib/` directory)
