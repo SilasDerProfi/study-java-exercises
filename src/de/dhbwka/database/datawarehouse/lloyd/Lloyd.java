@@ -40,7 +40,7 @@ public class Lloyd {
                 c.clear();
             }
 
-            System.out.println("--------");
+            System.out.println();
 
             // iterate until no cluster changed
         } while (anyClusterChanged);
