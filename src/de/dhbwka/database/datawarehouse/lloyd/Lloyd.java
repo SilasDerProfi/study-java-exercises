@@ -25,20 +25,19 @@ public class Lloyd {
 
         boolean anyClusterChanged;
         do {
-            // clear cluster-points
             anyClusterChanged = false;
-            cluster.forEach(Cluster::clear);
 
             // add all points to the cluster with the min center distance
             points.forEach(p -> cluster.stream()
                     .min((a, b) -> Double.compare(p.distanceTo(a.getCenter()), p.distanceTo(b.getCenter()))).get()
                     .addPoint(p));
 
-            // recalculate the center cells
+            // recalculate the center cells and clear cluster
             for (var c : cluster) {
                 c.updateCenter();
                 anyClusterChanged |= c.getCenterChanged();
                 System.out.println(c);
+                c.clear();
             }
 
             System.out.println("--------");
