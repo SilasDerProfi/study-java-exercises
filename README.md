@@ -2,7 +2,9 @@
 
 This Repository contains the solutions to exercises of the "Josef Durler Schule Rastatt" and the "Baden-Württemberg Cooperative State University Karlsruhe" for various lessons. For copyright reasons, the exercise descriptions are not included.
 
-java 11...
+## Build
+
+Use Java JDK 15 or higher to compile the project. For some packages external jar files are required (see at the corresponding readme)
 
 ## Structure
 

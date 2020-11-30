@@ -1,0 +1,25 @@
+<http://example.com/B> <http://example.com/rdf/#linksTo> <http://example.com/C> <http://example.com/>.
+
+<http://example.com/C> <http://example.com/rdf/#linksTo> <http://example.com/B> <http://example.com/>.
+
+<http://example.com/D> <http://example.com/rdf/#linksTo> <http://example.com/A> <http://example.com/>.
+<http://example.com/D> <http://example.com/rdf/#linksTo> <http://example.com/B> <http://example.com/>.
+
+<http://example.com/E> <http://example.com/rdf/#linksTo> <http://example.com/B> <http://example.com/>.
+<http://example.com/E> <http://example.com/rdf/#linksTo> <http://example.com/D> <http://example.com/>.
+<http://example.com/E> <http://example.com/rdf/#linksTo> <http://example.com/F> <http://example.com/>.
+
+<http://example.com/F> <http://example.com/rdf/#linksTo> <http://example.com/B> <http://example.com/>.
+<http://example.com/F> <http://example.com/rdf/#linksTo> <http://example.com/E> <http://example.com/>.
+
+<http://example.com/G> <http://example.com/rdf/#linksTo> <http://example.com/B> <http://example.com/>.
+<http://example.com/G> <http://example.com/rdf/#linksTo> <http://example.com/E> <http://example.com/>.
+
+<http://example.com/H> <http://example.com/rdf/#linksTo> <http://example.com/B> <http://example.com/>.
+<http://example.com/H> <http://example.com/rdf/#linksTo> <http://example.com/E> <http://example.com/>.
+
+<http://example.com/I> <http://example.com/rdf/#linksTo> <http://example.com/B> <http://example.com/>.
+<http://example.com/I> <http://example.com/rdf/#linksTo> <http://example.com/E> <http://example.com/>.
+
+<http://example.com/J> <http://example.com/rdf/#linksTo> <http://example.com/E> <http://example.com/>.
+<http://example.com/K> <http://example.com/rdf/#linksTo> <http://example.com/E> <http://example.com/>.
