@@ -2,7 +2,6 @@ package de.dhbwka.database.bigdata.pagerank;
 
 import java.io.*;
 import java.util.*;
-import java.util.stream.Collector;
 
 import org.eclipse.rdf4j.model.Model;
 import org.eclipse.rdf4j.rio.*;
